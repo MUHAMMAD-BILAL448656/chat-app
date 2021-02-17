@@ -1,22 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Home from './pages/Home'
-import reportWebVitals from './reportWebVitals';
-import store from './store';
-import {Provider} from 'react-redux';
-import App from './App';
+const initialstate = {
+  users:[],
+currentuser: {}
 
-ReactDOM.render(
-  <Provider store={store}>
-<App/>
+}
+export default(state=initialstate,dispatchkadata) =>{
+    switch(dispatchkadata.type){
+    case 'SETUSER':
+        return({
+            
+            ...state,
+             currentuser:   dispatchkadata.payload
+        })
+  
+  
+        case 'SETFIREBASEUSER':
+          return({
+              
+              ...state,
+               users: dispatchkadata.payload
+          })
+      }
+        
+  
+      
 
-  </Provider>
-      ,
-  document.getElementById('root')
-);
+    
+    return state
+    
+    }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  
